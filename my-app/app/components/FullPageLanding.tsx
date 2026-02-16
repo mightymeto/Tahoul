@@ -136,6 +136,7 @@ export default function FullPageLanding() {
       "(prefers-reduced-motion: reduce)"
     );
     const isDesktop = window.matchMedia(`(min-width: ${DESKTOP_MIN_WIDTH}px)`);
+    let sectionObserver: IntersectionObserver | null = null;
 
     const updateEnabled = () => {
       enabledRef.current = isDesktop.matches && !prefersReducedMotion.matches;
@@ -171,6 +172,39 @@ export default function FullPageLanding() {
       Array.from(
         container.querySelectorAll<HTMLElement>(".fullpage-section")
       );
+
+    const setupSectionObserver = () => {
+      if (sectionObserver) {
+        sectionObserver.disconnect();
+        sectionObserver = null;
+      }
+      if (isDesktop.matches) {
+        return;
+      }
+      const sections = getSections();
+      if (!sections.length) {
+        return;
+      }
+      sectionObserver = new IntersectionObserver(
+        (entries) => {
+          const visible = entries.filter((entry) => entry.isIntersecting);
+          if (!visible.length) {
+            return;
+          }
+          const best = visible.reduce((acc, entry) =>
+            entry.intersectionRatio > acc.intersectionRatio ? entry : acc
+          );
+          const indexValue =
+            (best.target as HTMLElement).dataset.index ?? "0";
+          const nextIndex = Number.parseInt(indexValue, 10);
+          if (!Number.isNaN(nextIndex)) {
+            setActiveIndex(nextIndex);
+          }
+        },
+        { threshold: [0.35, 0.55, 0.75] }
+      );
+      sections.forEach((section) => sectionObserver?.observe(section));
+    };
 
     const getSectionTop = (section: HTMLElement) => {
       const containerRect = container.getBoundingClientRect();
@@ -371,6 +405,7 @@ export default function FullPageLanding() {
       clearLock();
       resetDelta();
       updateActiveIndex();
+      setupSectionObserver();
     };
 
     const addMediaListener = (
@@ -396,6 +431,7 @@ export default function FullPageLanding() {
     window.addEventListener("keydown", handleKeyDown);
 
     updateActiveIndex();
+    setupSectionObserver();
 
     return () => {
       container.removeEventListener("scroll", handleScroll);
@@ -405,6 +441,9 @@ export default function FullPageLanding() {
       removeMotionListener();
       clearLock();
       resetDelta();
+      if (sectionObserver) {
+        sectionObserver.disconnect();
+      }
       if (rafRef.current !== null) {
         window.cancelAnimationFrame(rafRef.current);
       }

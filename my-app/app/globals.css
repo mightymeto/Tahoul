@@ -31,6 +31,12 @@ body {
   overflow-x: hidden;
 }
 
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 :root[dir="rtl"] body {
   letter-spacing: 0;
   direction: rtl;
@@ -212,7 +218,8 @@ html {
 
 @media (max-width: 768px) {
   .logo-track {
-    animation-duration: 30s;
+    animation: none;
+    transform: translateX(0);
     gap: 1.75rem;
   }
 
@@ -225,14 +232,32 @@ html {
   .logo-item .logo-image {
     height: 28px;
   }
+
+  .logo-marquee {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+  }
+
+  .logo-track {
+    scroll-snap-align: start;
+  }
 }
 
 .fullpage-container {
-  min-height: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow-x: hidden;
+  overflow-x: clip;
+  width: 100%;
 }
 
 .fullpage-section {
   position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  width: 100%;
 }
 
 @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {

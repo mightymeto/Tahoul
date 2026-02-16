@@ -11,7 +11,7 @@ export default function Team() {
   }>;
 
   return (
-    <section className="bg-[#0f1c27] py-12 pt-20 sm:pt-24 md:py-24 md:pt-32">
+    <section className="min-h-screen bg-[#0f1c27] py-12 pt-20 text-white sm:pt-24 md:py-24 md:pt-32">
       <div className="mx-auto max-w-6xl px-6">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div className="space-y-5">
@@ -48,9 +48,9 @@ export default function Team() {
           return (
             <div
               key={member.name}
-              className="card-hover rounded-2xl border border-white/15 bg-white/10 p-6 text-white shadow-[0_18px_40px_rgba(15,28,39,0.45)] transition duration-300 hover:-translate-y-1"
+              className="card-hover rounded-2xl border border-[#1f3550] bg-[#122639] p-6 text-white shadow-[0_18px_40px_rgba(15,28,39,0.45)] transition duration-300 hover:-translate-y-1"
             >
-              <div className="relative mb-5 aspect-4/3 w-full overflow-hidden rounded-2xl border border-white/70 bg-[linear-gradient(130deg,rgba(103,181,255,0.55),rgba(47,84,118,0.85))]">
+              <div className="relative mb-5 aspect-4/3 w-full overflow-hidden rounded-2xl border border-[#1f3550] bg-[linear-gradient(135deg,#132e48,#0f1c27)]">
                 {member.image ? (
                   <Image
                     src={member.image}

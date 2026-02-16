@@ -14,6 +14,7 @@ export default function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
   const totalSlides = items.length;
 
   useEffect(() => {
@@ -28,22 +29,32 @@ export default function Testimonials() {
     }
 
     const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReduceMotion(motionQuery.matches);
+    const smallQuery = window.matchMedia("(max-width: 768px)");
 
-    const handleChange = () => setReduceMotion(motionQuery.matches);
-    motionQuery.addEventListener?.("change", handleChange);
-    return () => motionQuery.removeEventListener?.("change", handleChange);
+    const updateQueries = () => {
+      setReduceMotion(motionQuery.matches);
+      setIsSmallScreen(smallQuery.matches);
+    };
+
+    updateQueries();
+
+    motionQuery.addEventListener?.("change", updateQueries);
+    smallQuery.addEventListener?.("change", updateQueries);
+    return () => {
+      motionQuery.removeEventListener?.("change", updateQueries);
+      smallQuery.removeEventListener?.("change", updateQueries);
+    };
   }, []);
 
   useEffect(() => {
-    if (reduceMotion || isPaused || totalSlides <= 1) {
+    if (reduceMotion || isPaused || isSmallScreen || totalSlides <= 1) {
       return;
     }
     const interval = window.setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % totalSlides);
     }, 5500);
     return () => window.clearInterval(interval);
-  }, [reduceMotion, isPaused, totalSlides]);
+  }, [reduceMotion, isPaused, isSmallScreen, totalSlides]);
 
   const goTo = (index: number) => {
     const nextIndex = (index + totalSlides) % totalSlides;
