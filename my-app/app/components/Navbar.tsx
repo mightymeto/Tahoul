@@ -24,6 +24,8 @@ export default function Navbar({
   const logoSrc = tone === "light" ? "/white-logo.png" : "/logo-tr.png";
   const logoFrameClass =
     "relative h-12 w-[190px] sm:h-14 sm:w-[210px] md:h-16 md:w-[230px]";
+  const logoClass =
+    "object-contain" + (tone !== "light" ? " logo-contrast" : "");
   const linkClass =
     tone === "light"
       ? "text-white/85"
@@ -45,7 +47,7 @@ export default function Navbar({
               alt={t("logoAlt")}
               fill
               priority
-              className="object-contain"
+              className={logoClass}
               sizes="190px"
             />
           </div>
@@ -66,7 +68,7 @@ export default function Navbar({
             className={`cta-animated items-center rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] transition hover:brightness-110 ${ctaClass}`}
             href={cta.href}
           >
-            <span>{cta.label}</span>
+            <span className="cta-label">{cta.label}</span>
             <span className="cta-arrow" aria-hidden="true">
               →
             </span>

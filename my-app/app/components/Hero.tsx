@@ -27,7 +27,7 @@ export default function Hero() {
               className="cta-animated w-full rounded-full border border-[rgba(103,181,255,0.5)] bg-[rgba(103,181,255,0.3)] px-6 py-3 text-center text-sm font-semibold uppercase tracking-[0.2em] text-white transition hover:-translate-y-0.5 hover:bg-[rgba(103,181,255,0.45)] sm:w-auto"
               href="#contact"
             >
-              <span>{t("primaryCtaLabel")}</span>
+              <span className="cta-label">{t("primaryCtaLabel")}</span>
               <span className="cta-arrow" aria-hidden="true">
                 →
               </span>

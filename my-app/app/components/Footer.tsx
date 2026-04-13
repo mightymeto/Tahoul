@@ -24,7 +24,7 @@ export default function Footer() {
               alt={tNav("logoAlt")}
               width={380}
               height={130}
-              className="h-24 w-auto"
+              className="h-24 w-auto logo-contrast"
             />
             <p className="max-w-sm text-base font-semibold text-[color:var(--color-ink)]/65 lg:mx-0 mx-auto">
               {tFooter("blurb")}

@@ -46,7 +46,9 @@ const sectionMeta = [
   },
   {
     id: "our-promise",
-    navBackground: baseSectionBackground,
+    navBackground:
+      "linear-gradient(180deg, rgba(12,21,31,0.9) 0%, rgba(12,21,31,0.7) 100%)",
+    navTone: "light",
   },
   {
     id: "testimonials",

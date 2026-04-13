@@ -131,6 +131,11 @@ html {
   transition: opacity 200ms ease;
 }
 
+.logo-contrast {
+  filter: saturate(1.25) contrast(1.22)
+    drop-shadow(0 2px 6px rgba(15, 28, 39, 0.16));
+}
+
 .logo-item:hover .logo-image {
   opacity: 1;
 }
@@ -787,20 +792,38 @@ html {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  justify-content: center;
+}
+
+.cta-label {
+  transition: transform 220ms ease;
 }
 
 .cta-arrow {
-  display: inline-block;
-  transform: translateX(-6px);
+  display: inline-flex;
+  max-width: 0;
+  margin-left: 0;
   opacity: 0;
-  transition: transform 220ms ease, opacity 220ms ease;
+  overflow: hidden;
+  transform: translateX(-6px);
+  transition:
+    max-width 220ms ease,
+    margin-left 220ms ease,
+    transform 220ms ease,
+    opacity 220ms ease;
 }
 
 .cta-animated:hover .cta-arrow,
 .cta-animated:focus-visible .cta-arrow {
-  transform: translateX(0);
+  max-width: 1.25rem;
+  margin-left: 0.35rem;
   opacity: 1;
+  transform: translateX(0);
+}
+
+.cta-animated:hover .cta-label,
+.cta-animated:focus-visible .cta-label {
+  transform: translateX(-4px);
 }
 
 .fade-up {
