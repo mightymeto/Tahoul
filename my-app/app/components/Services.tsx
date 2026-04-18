@@ -159,7 +159,7 @@ export default function Services() {
                   </h3>
                 </div>
                 <div className="mt-6 overflow-hidden transition-all duration-400 ease-out max-h-0 opacity-0 translate-y-3 group-hover:max-h-72 group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:max-h-72 group-focus-within:opacity-100 group-focus-within:translate-y-0 max-md:max-h-none max-md:opacity-100 max-md:translate-y-0">
-                  <ul className="space-y-2.5 text-center text-[1.02rem] font-semibold text-white">
+                  <ul className="space-y-2.5 text-left text-[1.02rem] font-semibold text-white">
                     {service.points.map((item) => (
                       <li key={item} className="flex items-center justify-start gap-3">
                         <span className="h-2.5 w-2.5 rounded-full bg-white" />
