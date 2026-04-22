@@ -26,8 +26,8 @@ export default function LanguageSwitcher({ className }: LanguageSwitcherProps) {
     const search = searchParams?.toString();
     const hash = typeof window !== "undefined" ? window.location.hash : "";
     const safePathname = pathname || "/";
-    const href = `${safePathname}${search ? `?${search}` : ""}${hash}`;
-    router.replace(href, { locale: nextLocale });
+    const href = `/${nextLocale}${safePathname}${search ? `?${search}` : ""}${hash}`;
+    window.location.href = href;
   };
 
   return (
