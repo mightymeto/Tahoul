@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type CSSProperties } from "react";
+import { useState, useEffect, useRef, type CSSProperties } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 
@@ -18,6 +18,24 @@ export default function Navbar({
   bordered = true,
 }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+        setIsVisible(false);
+        setIsOpen(false);
+      } else if (currentScrollY < lastScrollY.current) {
+        setIsVisible(true);
+      }
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   const t = useTranslations("Navigation");
   const links = t.raw("links") as Array<{ label: string; href: string }>;
   const cta = t.raw("cta") as { label: string; href: string };
@@ -37,7 +55,10 @@ export default function Navbar({
 
   return (
     <nav
-      className="fixed left-0 right-0 top-0 z-50 w-full border-b border-transparent bg-transparent"
+      className={`fixed left-0 right-0 top-0 z-50 w-full border-b border-transparent bg-transparent transition-transform duration-300 ${
+        isVisible ? '' : '-translate-y-full'
+      }`}
+      style={backgroundStyle}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-8 px-4 py-4 sm:px-6 sm:py-5">
         <div className="flex items-center">
