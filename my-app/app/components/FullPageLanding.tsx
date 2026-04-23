@@ -39,22 +39,22 @@ const sectionMeta = [
     navTone: "light",
   },
   { id: "services", navBackground: baseSectionBackground },
-  {
-    id: "our-leadership",
-    navBackground: baseSectionBackground,
-    navTone: "light",
-  },
+  // {
+  //   id: "our-leadership",
+  //   navBackground: baseSectionBackground,
+  //   navTone: "light",
+  // },
   {
     id: "our-promise",
     navBackground:
       "linear-gradient(180deg, rgba(12,21,31,0.9) 0%, rgba(12,21,31,0.7) 100%)",
     navTone: "light",
   },
-  {
-    id: "testimonials",
-    navBackground: baseSectionBackground,
-    navTone: "light",
-  },
+  // {
+  //   id: "testimonials",
+  //   navBackground: baseSectionBackground,
+  //   navTone: "light",
+  // },
   { id: "faqs", navBackground: baseSectionBackground },
   {
     id: "contact",
@@ -586,38 +586,38 @@ export default function FullPageLanding() {
           <Services />
         </section>
 
-        <section
+        {/* <section
           id="our-leadership"
           className="fullpage-section"
           data-index={4}
           data-active={activeIndex === 4 ? "true" : "false"}
         >
           <Team />
-        </section>
+        </section> */}
 
         <section
           id="our-promise"
           className="fullpage-section"
-          data-index={5}
-          data-active={activeIndex === 5 ? "true" : "false"}
+          data-index={4}
+          data-active={activeIndex === 4 ? "true" : "false"}
         >
           <Promise />
         </section>
 
-        <section
+        {/* <section
           id="testimonials"
           className="fullpage-section"
           data-index={6}
           data-active={activeIndex === 6 ? "true" : "false"}
         >
           <Testimonials />
-        </section>
+        </section> */}
 
         <section
           id="faqs"
           className="fullpage-section"
-          data-index={7}
-          data-active={activeIndex === 7 ? "true" : "false"}
+          data-index={5}
+          data-active={activeIndex === 5 ? "true" : "false"}
         >
           <Faqs />
         </section>
@@ -625,8 +625,8 @@ export default function FullPageLanding() {
         <section
           id="contact"
           className="fullpage-section"
-          data-index={8}
-          data-active={activeIndex === 8 ? "true" : "false"}
+          data-index={6}
+          data-active={activeIndex === 6 ? "true" : "false"}
         >
           <Contact />
         </section>
@@ -634,12 +634,13 @@ export default function FullPageLanding() {
         <section
           id="footer"
           className="fullpage-section"
-          data-index={9}
-          data-active={activeIndex === 9 ? "true" : "false"}
+          data-index={7}
+          data-active={activeIndex === 7 ? "true" : "false"}
         >
           <Footer />
         </section>
       </div>
+
     </div>
   );
 }

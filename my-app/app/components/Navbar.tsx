@@ -19,7 +19,15 @@ export default function Navbar({
 }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const [isDesktop, setIsDesktop] = useState(false);
   const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const checkDesktop = () => setIsDesktop(window.innerWidth >= 1024);
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop);
+    return () => window.removeEventListener('resize', checkDesktop);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,12 +61,14 @@ export default function Navbar({
       ? "bg-[var(--color-accent)] text-[var(--color-ink)] hover:bg-[#0f1c27] hover:text-white"
       : "bg-[var(--color-accent)] text-[var(--color-ink)] hover:bg-[#0f1c27] hover:text-white";
 
+  const effectiveBackgroundStyle = isDesktop ? undefined : backgroundStyle;
+
   return (
     <nav
       className={`fixed left-0 right-0 top-0 z-50 w-full border-b border-transparent bg-transparent transition-transform duration-300 ${
         isVisible ? '' : '-translate-y-full'
       }`}
-      style={backgroundStyle}
+      style={effectiveBackgroundStyle}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-8 px-4 py-4 sm:px-6 sm:py-5">
         <div className="flex items-center">
