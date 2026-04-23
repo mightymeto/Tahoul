@@ -265,11 +265,6 @@ html {
   width: 100%;
 }
 
-#footer {
-  min-height: auto;
-  height: auto;
-}
-
 @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
   html,
   body {

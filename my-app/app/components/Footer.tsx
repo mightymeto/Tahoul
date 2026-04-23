@@ -15,7 +15,7 @@ export default function Footer() {
   const email = details.find((detail) => detail.type === "email")?.value ?? "";
 
   return (
-    <footer className="flex w-full items-start bg-white pt-20 pb-12">
+    <footer className="flex min-h-screen w-full items-center bg-white py-12">
       <div className="mx-auto w-full max-w-6xl px-6 text-[color:var(--color-ink)]/70">
         <div className="grid gap-10 text-center lg:grid-cols-[1.2fr_0.7fr_0.9fr] lg:text-start">
           <div className="space-y-6">

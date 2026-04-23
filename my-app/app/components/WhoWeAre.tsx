@@ -158,7 +158,7 @@ export default function WhoWeAre() {
               style={{ animationDelay: "0.16s" }}
             >
               <Image
-                src="/who_we_are.png"
+                src="/logo-tr.png"
                 alt={t("imageAlt")}
                 width={420}
                 height={140}
